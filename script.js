@@ -2,12 +2,11 @@ window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecogn
 
 const recognition = new SpeechRecognition();
 recognition.interimResults = true;
-recognition.continuous = true; // Enable continuous recognition
+recognition.continuous = true;
 recognition.lang = 'en-US';
 
-let listening = false; // Flag to keep track of whether we're currently listening
+let listening = false;
 
-// to load and display the text file
 function loadTextFile() {
     fetch('text.txt')
         .then(response => response.text())
@@ -16,43 +15,45 @@ function loadTextFile() {
         });
 }
 
-// Call the function on page load
 loadTextFile();
 
-// Function to track the reading position
 function updateReadingPosition(spokenText) {
     const writtenText = document.getElementById('written-text').innerText;
-    const words = writtenText.split(/\s+/); // Split the text into words
+    
+    // To split the text by spaces and punctuation marks.. not working. need to dig more
+    const regex = /\s+|[.!?]+/g;
+    const words = spokenText.split(regex);
 
-    // Find the word that matches the spoken text, might require more advanced algorithms. For now it just finds the first word that matches
-    let position = words.findIndex(word => word.toLowerCase() === spokenText.toLowerCase());
+    let wordCount = Math.min(words.length, 5);
+    let spokenWords = words.slice(-wordCount);
+    let sequence = spokenWords.join(' ').toLowerCase();
 
-    // To highlight the word
+    let position = writtenText.toLowerCase().indexOf(sequence);
+
+    // To highlight the spoken text
+    document.querySelectorAll('.highlighted').forEach(el => {
+        el.classList.remove('highlighted');
+    });
+
     if (position >= 0) {
-        let highlightedText = words.map((word, index) => {
-            if (index === position) {
-                return `<span style="background-color: yellow;">${word}</span>`;
-            }
-            return word;
-        }).join(' ');
+        let before = writtenText.substring(0, position);
+        let after = writtenText.substring(position + sequence.length);
+        let highlightedText = `${before}<span class="highlighted">${sequence}</span>${after}`;
         document.getElementById('written-text').innerHTML = highlightedText;
     }
 }
 
 recognition.addEventListener('result', e => {
-    const lastWord = Array.from(e.results)
+    const spokenText = Array.from(e.results)
         .map(result => result[0])
         .map(result => result.transcript)
-        .join('')
-        .split(' ').pop(); //Get the last spoken word
-        
-    // Call the function to update the reading position
-    updateReadingPosition(lastWord);
+        .join('');
+
+    updateReadingPosition(spokenText);
 });
 
 const startBtn = document.getElementById('start-btn');
 
-// Toggle the listening state with button
 startBtn.addEventListener('click', () => {
     if (listening) {
         recognition.stop();
