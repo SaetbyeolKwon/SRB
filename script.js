@@ -6,14 +6,14 @@ recognition.continuous = true;
 recognition.lang = 'en-US';
 
 let listening = false;
-let displayText = '';  // Original text with proper casing and punctuation
+let displayText = '';  // Original text
 
 function loadTextFile() {
     fetch('text.txt')
         .then(response => response.text())
         .then(text => {
             displayText = text;
-            document.getElementById('written-text').innerHTML = displayText.replace(/\n/g, '<br>'); // Preserving line breaks
+            document.getElementById('written-text').innerHTML = displayText.replace(/\n/g, '<br>');
         });
 }
 
@@ -90,3 +90,10 @@ pauseBtn.addEventListener('click', () => {
         isPaused = false;
     }
 });
+
+// const testBtn = document.getElementById('test-btn');
+
+// testBtn.addEventListener('click', () => {
+//     const testText = "Polar Express by Chris"; // Replace with the text you want to test
+//     updateReadingPosition(testText);
+// });
