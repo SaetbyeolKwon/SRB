@@ -58,10 +58,35 @@ recognition.addEventListener('result', e => {
     updateReadingPosition(spokenText);
 });
 
+// Start&stop and pause buttons
 const startBtn = document.getElementById('start-btn');
+const pauseBtn = document.getElementById('pause-btn');
+let isPaused = false;
 
 startBtn.addEventListener('click', () => {
     listening = !listening;
-    startBtn.textContent = listening ? 'Stop Listening' : 'Start Listening';
-    listening ? recognition.start() : recognition.stop();
+    if (listening) {
+        recognition.start();
+        startBtn.textContent = 'Stop Reading';
+        if (isPaused) {
+            resumeAllSounds();
+            isPaused = false;
+        }
+    } else {
+        recognition.stop();
+        startBtn.textContent = 'Start Reading';
+        stopAllSounds();
+    }
+});
+
+pauseBtn.addEventListener('click', () => {
+    if (!isPaused) {
+        pauseAllSounds();
+        pauseBtn.textContent = 'Resume';
+        isPaused = true;
+    } else {
+        resumeAllSounds();
+        pauseBtn.textContent = 'Pause';
+        isPaused = false;
+    }
 });

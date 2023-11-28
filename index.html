@@ -7,7 +7,10 @@
 <body>
     <div class="container">
         <h1>Speech Recognition Demo</h1>
-        <button id="start-btn" class="start-button">Start Listening</button>
+        <div class = "button-container">
+            <button id="start-btn" class="start-button">Start Reading</button>
+            <button id="pause-btn" class="pause-button">Pause</button>
+        </div>
         <div id="written-text" class="text-area"></div>
 
         <!-- For Speech recognition debugging
@@ -16,7 +19,7 @@
          -->
 
          <!-- play audio file -->
-         <audio id="background" src="./sounds/Polar Express Sound.m4a" loop></audio>
+         <audio id="background" src="sounds/Polar Express Sound.m4a" loop></audio>
          <!-- <audio id="train-sound" src="train01.mp3"></audio> -->
         
     </div>

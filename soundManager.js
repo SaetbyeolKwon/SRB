@@ -1,5 +1,5 @@
 const soundTriggers = {
-    "The Polar Express by Chris": "background",
+    "Polar Express by Chris": "background",
     // "From outside came the sounds": "train01",
     // More triggers and sound id
 };
@@ -9,14 +9,41 @@ function playSound(text) {
         if (text.includes(trigger)) {
             const soundId = soundTriggers[trigger];
             const soundElement = document.getElementById(soundId);
-            if (soundElement && !soundElement.playing) {
+            if (soundElement) {
+                console.log(`Playing sound: ${soundId}`);
+                soundElement.currentTime = 0;
                 soundElement.play();
+            } else {
+                console.log(`Sound not found: ${soundId}`);
             }
         }
     });
 }
 
-// To check if an audio is playing
-HTMLAudioElement.prototype.playing = function() {
-    return !!(this.currentTime > 0 && !this.paused && !this.ended && this.readyState > 2);
-};
+function pauseAllSounds() {
+    Object.values(soundTriggers).forEach(soundId => {
+        const soundElement = document.getElementById(soundId);
+        if (soundElement && !soundElement.paused) {
+            soundElement.pause();
+        }
+    });
+}
+
+function resumeAllSounds() {
+    Object.values(soundTriggers).forEach(soundId => {
+        const soundElement = document.getElementById(soundId);
+        if (soundElement && soundElement.paused) {
+            soundElement.play();
+        }
+    });
+}
+
+function stopAllSounds() {
+    Object.values(soundTriggers).forEach(soundId => {
+        const soundElement = document.getElementById(soundId);
+        if (soundElement) {
+            soundElement.pause();
+            soundElement.currentTime = 0;
+        }
+    });
+}
