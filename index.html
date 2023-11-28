@@ -9,7 +9,18 @@
         <h1>Speech Recognition Demo</h1>
         <button id="start-btn" class="start-button">Start Listening</button>
         <div id="written-text" class="text-area"></div>
+
+        <!-- For Speech recognition debugging
+        <h2>Recognition Text (For Debugging)</h2>
+        <div id="recognition-text" class="text-area" style="background-color: #f0f0f0;"></div>
+         -->
+
+         <!-- play audio file -->
+         <audio id="background" src="./sounds/Polar Express Sound.m4a" loop></audio>
+         <!-- <audio id="train-sound" src="train01.mp3"></audio> -->
+        
     </div>
     <script src="script.js"></script>
+    <script src="soundManager.js"></script>
 </body>
 </html>
