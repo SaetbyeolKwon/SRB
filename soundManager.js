@@ -1,9 +1,12 @@
 const audioConfig = {
-    "Polar Express by Chris": { id: "seeingIsBelieving", src: "sounds/Seeing Is Believing.mp3", loop: true, volume: 0.4 },
+    "Polar Express by Chris": { id: "seeingIsBelieving", src: "sounds/Seeing Is Believing.mp3", loop: true, volume: 0.2, fadeOutTrigger: "thundered through the quiet"},
     "From outside came the": { id: "steam01", src: "sounds/steam01.m4a", volume: 1.0 },
     "and out the door": { id: "allAboard01", src: "sounds/allAboard01.m4a", volume: 1.0 },
     "to the North Pole": { id: "whyToTheNorthPole01", src: "sounds/whyToTheNorthPole01.m4a", volume: 1.0 },
     "The train was filled": { id: "trainWithOtherChildren01", src: "sounds/trainWithOtherChildren01.m4a", volume: 1.0 },
+    "Soon there were no": { id: "wolves01", src: "sounds/wolves01.m4a", volume: 1.0 },
+    "from our train as": { id: "thunder01", src: "sounds/thunder01.wav", volume: 1.0 },
+    "Faster and faster we": { id: "theNorthPole", src: "sounds/TheNorthPole.mp3", volume: 0.2 },
 };
 
 // Because i want to flag the sounds to false until they're played
@@ -11,43 +14,60 @@ let soundPlayed = {};
 let currentlyPlaying = []; // list of currently playing sounds
 let pausedSounds = [];
 
-// Create audio elements and set up triggers
-Object.values(audioConfig).forEach(config => {
-    const audio = document.createElement("audio");
-    audio.id = config.id;
-    audio.src = config.src;
-    if (config.loop) {
-        audio.setAttribute("loop", true);
-    }
-    // Set default volume to 1.0
-    audio.volume = config.volume || 1.0;
-    document.body.appendChild(audio);
+document.addEventListener('DOMContentLoaded', setupAudioElements);
 
-    // Flag soundPlayed to false
-    soundPlayed[config.id] = false;
-});
+// Create audio elements and set up triggers
+function setupAudioElements() {
+    Object.values(audioConfig).forEach(config => {
+        const audio = new Audio(config.src);
+        audio.id = config.id;
+        // By default no loop and volume is 1.0
+        audio.loop = config.loop || false;
+        audio.volume = config.volume || 1.0;
+        document.body.appendChild(audio);
+        soundPlayed[config.id] = false;
+    });
+}
 
 function playSound(text) {
     Object.keys(audioConfig).forEach(trigger => {
         if (text.includes(trigger)) {
             const soundInfo = audioConfig[trigger];
             const soundElement = document.getElementById(soundInfo.id);
+
             if (soundElement) {
                 if (!soundPlayed[soundInfo.id]) {
-                    console.log(`Playing sound: ${soundInfo.id}`);
-                    soundElement.currentTime = 0; // I needed to set currentTime to 0 to play the sound
+                    console.log(`Playing sound: ${soundInfo.id}, volume: ${soundInfo.volume}`);
+                    soundElement.currentTime = 0;
                     soundElement.play();
                     // Flagging the sound to true
                     soundPlayed[soundInfo.id] = true;
-                    if (!currentlyPlaying.includes(soundInfo.id)) {
-                        currentlyPlaying.push(soundInfo.id); // Add to currently playing list
-                    }
+                    currentlyPlaying.push(soundInfo.id);
                 }
-            } else {
-                console.error(`Sound not found: ${soundInfo.id}`);
+
+                // Trigger fade out
+                if (soundInfo.fadeOutTrigger && text.includes(soundInfo.fadeOutTrigger)) {
+                    fadeOutSound(soundElement);
+                    console.log ("fadout trigger");
+                }
             }
         }
     });
+}
+
+function fadeOutSound(soundElement) {
+    let volume = soundElement.volume;
+    const fadeOutInterval = setInterval(() => {
+        volume -= 0.1;
+        if (volume <= 0) {
+            clearInterval(fadeOutInterval);
+            soundElement.pause();
+            soundElement.currentTime = 0;
+            soundElement.volume = audioConfig[soundElement.id].volume; // Reset volume
+        } else {
+            soundElement.volume = volume;
+        }
+    }, 200); // Fadeout time
 }
 
 function pauseAllSounds() {
@@ -62,24 +82,23 @@ function pauseAllSounds() {
 }
 
 function resumeAllSounds() {
-    currentlyPlaying.forEach(id => {
+    pausedSounds.forEach(id => {
         const soundElement = document.getElementById(id);
-        if (soundElement && soundElement.paused) {
+        if (soundElement) {
             soundElement.play();
         }
     });
-    pausedSounds = []; 
+    pausedSounds = [];
 }
 
 function stopAllSounds() {
-    Object.values(audioConfig).forEach(config => {
-        const soundElement = document.getElementById(config.id);
+    currentlyPlaying.forEach(id => {
+        const soundElement = document.getElementById(id);
         if (soundElement) {
             soundElement.pause();
             soundElement.currentTime = 0;
+            soundPlayed[id] = false;
         }
-        soundPlayed[config.id] = false;
     });
     currentlyPlaying = []; // To clear the current playing list
-    pausedSounds = [];
 }

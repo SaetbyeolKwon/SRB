@@ -1,19 +1,34 @@
-body {
+body,html {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: #5a6f7f;
+    color: #ffffff;
     line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
 }
 
 .container {
-    width: 80%;
+    width: 100%;
+    height: 100%;
     margin: 0 auto;
     overflow: hidden;
+    position: absolute;
+    z-index: 2;
 }
 
 h1 {
     text-align: center;
-    color: #333;
+    color: #ffffff;
 }
 
 .button-container {
@@ -24,34 +39,79 @@ h1 {
 .start-button, .pause-button {
     display: inline-block;
     width: 150px;
-    margin: 20px auto;
+    margin: 20px 15px;
     padding: 10px;
-    background: #333;
     color: #fff;
-    border: none;
+    border: 2px solid white;
     border-radius: 5px;
     cursor: pointer;
 }
 
+.start-button {
+    background: rgb(121, 155, 139);
+}
+
+.pause-button {
+    background: #ce3b43;
+}
+
 .start-button:hover {
-    background: #555;
+    background: rgb(87, 112, 100);
 }
 
 .pause-button:hover {
-    background: #555;
+    background: #a52e34;
 }
 
 .text-area {
-    background: #fff;
-    border: 1px solid #ddd;
+    background: #5a6f7f;
+    border: 2px solid #ddd;
     padding: 20px;
-    margin-top: 20px;
+    margin: 20px 10% auto 10%;
     height: 400px;
     overflow-y: scroll;
 }
 
 .highlighted {
     font-weight: bold;
-    color: #0089a7;
+    color: #43cceb;
     background-color: transparent;
+}
+
+#snow-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: url('imgs/snowflake.jpg') repeat top center;
+    animation: snowfall 10s linear infinite;
+}
+
+#moving-train {
+    position: absolute;
+    bottom: 10px;
+    left: -100%;
+    animation: moveTrain 20s linear infinite;
+}
+
+.interactive-element {
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.interactive-element:hover {
+    transform: scale(1.1);
+}
+
+@keyframes snowfall {
+    0% { background-position: 0 0; }
+    100% { background-position: 1000px 1000px; }
+}
+
+@keyframes moveTrain {
+    0% { left: -100%; }
+    50% { left: 100%; }
+    100% { left: -100%; }
 }
