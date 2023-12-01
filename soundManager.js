@@ -3,7 +3,7 @@ const audioConfig = {
     "From outside came the": { id: "steam01", src: "sounds/steam01.m4a", volume: 1.0 },
     "and out the door": { id: "allAboard01", src: "sounds/allAboard01.m4a", volume: 1.0 },
     "to the North Pole": { id: "whyToTheNorthPole01", src: "sounds/whyToTheNorthPole01.m4a", volume: 1.0 },
-    "The train was filled": { id: "trainWithOtherChildren01", src: "sounds/trainWithOtherChildren01.m4a", volume: 1.0 },
+    "The train was filled": { id: "trainWithOtherChildren01", src: "sounds/trainWithOtherChildren01.m4a", volume: 1.0, backgroundColor: "#c07007" },
     "Soon there were no": { id: "wolves01", src: "sounds/wolves01.m4a", volume: 1.0 },
     "from our train as": { id: "thunder01", src: "sounds/thunder01.wav", volume: 1.0 },
     "Faster and faster we": { id: "theNorthPole", src: "sounds/TheNorthPole.mp3", volume: 0.2 },
@@ -43,6 +43,10 @@ function playSound(text) {
                 // Flagging the sound as played
                 soundPlayed[soundInfo.id] = true;
                 currentlyPlaying.push(soundInfo.id);
+                // Check bg color input and change
+                if (soundInfo.backgroundColor) {
+                    changeBackgroundColor(soundInfo.backgroundColor);
+                }
             }
         }
 
@@ -52,6 +56,10 @@ function playSound(text) {
             console.log("Fadeout trigger");
         }
     });
+}
+
+function changeBackgroundColor(color) {
+    document.body.style.backgroundColor = color;
 }
 
 function fadeOutSound(soundElement) {
