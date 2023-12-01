@@ -1,5 +1,5 @@
 const audioConfig = {
-    "Polar Express by Chris": { id: "seeingIsBelieving", src: "sounds/Seeing Is Believing.mp3", loop: true, volume: 0.2, fadeOutTrigger: "thundered through the quiet"},
+    "Polar Express by Chris": { id: "seeingIsBelieving", src: "sounds/Seeing Is Believing02.mp3", loop: true, volume: 0.2, fadeOutTrigger: "thundered through the quiet"},
     "From outside came the": { id: "steam01", src: "sounds/steam01.m4a", volume: 1.0 },
     "and out the door": { id: "allAboard01", src: "sounds/allAboard01.m4a", volume: 1.0 },
     "to the North Pole": { id: "whyToTheNorthPole01", src: "sounds/whyToTheNorthPole01.m4a", volume: 1.0 },
@@ -31,26 +31,25 @@ function setupAudioElements() {
 
 function playSound(text) {
     Object.keys(audioConfig).forEach(trigger => {
-        if (text.includes(trigger)) {
-            const soundInfo = audioConfig[trigger];
-            const soundElement = document.getElementById(soundInfo.id);
+        const soundInfo = audioConfig[trigger];
+        const soundElement = document.getElementById(soundInfo.id);
 
-            if (soundElement) {
-                if (!soundPlayed[soundInfo.id]) {
-                    console.log(`Playing sound: ${soundInfo.id}, volume: ${soundInfo.volume}`);
-                    soundElement.currentTime = 0;
-                    soundElement.play();
-                    // Flagging the sound to true
-                    soundPlayed[soundInfo.id] = true;
-                    currentlyPlaying.push(soundInfo.id);
-                }
-
-                // Trigger fade out
-                if (soundInfo.fadeOutTrigger && text.includes(soundInfo.fadeOutTrigger)) {
-                    fadeOutSound(soundElement);
-                    console.log ("fadout trigger");
-                }
+        // Check to play sound
+        if (text.includes(trigger) && soundElement) {
+            if (!soundPlayed[soundInfo.id]) {
+                console.log(`Playing sound: ${soundInfo.id}, volume: ${soundInfo.volume}`);
+                soundElement.currentTime = 0;
+                soundElement.play();
+                // Flagging the sound as played
+                soundPlayed[soundInfo.id] = true;
+                currentlyPlaying.push(soundInfo.id);
             }
+        }
+
+        // Check for fade out trigger
+        if (soundInfo.fadeOutTrigger && text.includes(soundInfo.fadeOutTrigger) && soundElement) {
+            fadeOutSound(soundElement);
+            console.log("Fadeout trigger");
         }
     });
 }
@@ -63,11 +62,11 @@ function fadeOutSound(soundElement) {
             clearInterval(fadeOutInterval);
             soundElement.pause();
             soundElement.currentTime = 0;
-            soundElement.volume = audioConfig[soundElement.id].volume; // Reset volume
+            // soundElement.volume = audioConfig[soundElement.id].volume; // Reset volume
         } else {
             soundElement.volume = volume;
         }
-    }, 200); // Fadeout time
+    }, 2000); // Fadeout time
 }
 
 function pauseAllSounds() {

@@ -120,10 +120,35 @@ function updateReadingPosition(spokenText) {
 //     }
 // }
 
+let autoPauseTimer;
+
 recognition.addEventListener('result', e => {
     const spokenText = Array.from(e.results).map(result => result[0]).map(result => result.transcript).join('');
     updateReadingPosition(spokenText);
+
+    // Reset the timer on new voice input
+    clearTimeout(autoPauseTimer);
+    autoPauseTimer = setTimeout(() => {
+        automaticPause();
+    }, 10000); // 10 seconds
 });
+
+function automaticPause() {
+    if (listening) {
+        currentlyPlaying.forEach(id => {
+            const soundElement = document.getElementById(id);
+            if (soundElement && !soundElement.paused) {
+                fadeOutSound(soundElement);
+            }
+        });
+        
+        listening = false;
+        recognition.stop();
+        startBtn.textContent = 'Start Reading';
+        pauseBtn.textContent = 'Resume';
+        isPaused = true;
+    }
+}
 
 const startBtn = document.getElementById('start-btn');
 const pauseBtn = document.getElementById('pause-btn');
