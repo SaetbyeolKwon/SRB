@@ -1,12 +1,13 @@
 const audioConfig = {
-    "Polar Express by Chris": { id: "seeingIsBelieving", src: "sounds/Seeing Is Believing02.mp3", loop: true, volume: 0.2, fadeOutTrigger: "thundered through the quiet"},
+    "Polar Express by Chris": { id: "seeingIsBelieving", src: "sounds/Seeing Is Believing02.mp3", loop: true, fadeOutTrigger: "thundered through the quiet", snowflake: true, volume: 0.2 },
     "From outside came the": { id: "steam01", src: "sounds/steam01.m4a", volume: 1.0 },
     "and out the door": { id: "allAboard01", src: "sounds/allAboard01.m4a", volume: 1.0 },
     "to the North Pole": { id: "whyToTheNorthPole01", src: "sounds/whyToTheNorthPole01.m4a", volume: 1.0 },
-    "The train was filled": { id: "trainWithOtherChildren01", src: "sounds/trainWithOtherChildren01.m4a", volume: 1.0, backgroundColor: "#c07007" },
+    "The train was filled": { id: "trainWithOtherChildren01", src: "sounds/trainWithOtherChildren01.m4a", bgColor: "radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);", snowflake: false, volume: 1.0 },
     "Soon there were no": { id: "wolves01", src: "sounds/wolves01.m4a", volume: 1.0 },
     "from our train as": { id: "thunder01", src: "sounds/thunder01.wav", volume: 1.0 },
-    "Faster and faster we": { id: "theNorthPole", src: "sounds/TheNorthPole.mp3", volume: 0.2 },
+    "Faster and faster we": { id: "theNorthPole", src: "sounds/TheNorthPole.mp3", loop: true, volume: 0.2 },
+    "pressed through the crowd": { id: "theNorthPole", src: "sounds/TheNorthPole.mp3", bgColor: "#5a6f7f", snowflake: true, volume: 0.2 },
 };
 
 // Because i want to flag the sounds to false until they're played
@@ -44,8 +45,11 @@ function playSound(text) {
                 soundPlayed[soundInfo.id] = true;
                 currentlyPlaying.push(soundInfo.id);
                 // Check bg color input and change
-                if (soundInfo.backgroundColor) {
-                    changeBackgroundColor(soundInfo.backgroundColor);
+                if (soundInfo.bgColor) {
+                    changeBgColor(soundInfo.bgColor);
+                }
+                if (soundInfo.hasOwnProperty('snowflake')) {
+                    controlSnowflake(soundInfo.snowflake);
                 }
             }
         }
@@ -58,8 +62,16 @@ function playSound(text) {
     });
 }
 
-function changeBackgroundColor(color) {
-    document.body.style.backgroundColor = color;
+function changeBgColor(color) {
+    document.body.style.background = `${color}`;
+}
+
+function controlSnowflake(shouldAnimate) {
+    if (shouldAnimate) {
+        startSnowflake();
+    } else {
+        stopSnowflake();
+    }
 }
 
 function fadeOutSound(soundElement) {
@@ -74,7 +86,7 @@ function fadeOutSound(soundElement) {
         } else {
             soundElement.volume = volume;
         }
-    }, 2000); // Fadeout time
+    }, 2000); // Fadeout time 2sec
 }
 
 function pauseAllSounds() {
