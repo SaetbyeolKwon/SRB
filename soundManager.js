@@ -3,7 +3,7 @@ const audioConfig = {
     "From outside came the": { id: "steam01", src: "sounds/steam01.m4a", volume: 1.0 },
     "and out the door": { id: "allAboard01", src: "sounds/allAboard01.m4a", volume: 1.0 },
     "to the North Pole": { id: "whyToTheNorthPole01", src: "sounds/whyToTheNorthPole01.m4a", volume: 1.0 },
-    "The train was filled": { id: "trainWithOtherChildren01", src: "sounds/trainWithOtherChildren01.m4a", bgColor: "radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);", snowflake: false, volume: 1.0 },
+    "The train was filled": { id: "trainWithOtherChildren01", src: "sounds/trainWithOtherChildren01.m4a", bgColor: "#c47f11", snowflake: false, volume: 1.0 },
     "Soon there were no": { id: "wolves01", src: "sounds/wolves01.m4a", volume: 1.0 },
     "from our train as": { id: "thunder01", src: "sounds/thunder01.wav", volume: 1.0 },
     "Faster and faster we": { id: "theNorthPole", src: "sounds/TheNorthPole.mp3", loop: true, volume: 0.2 },
@@ -63,7 +63,7 @@ function playSound(text) {
 }
 
 function changeBgColor(color) {
-    document.body.style.background = `${color}`;
+    document.body.style.backgroundColor = color;
 }
 
 function controlSnowflake(shouldAnimate) {
