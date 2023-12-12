@@ -1,13 +1,18 @@
 const audioConfig = {
-    "Polar Express by Chris": { id: "seeingIsBelieving", src: "sounds/Seeing Is Believing02.mp3", loop: true, fadeOutTrigger: "thundered through the quiet", snowflake: true, volume: 0.2 },
+    "Polar Express by Chris": { id: "researchingTheNorthPole", src: "sounds/Researching The North Pole.mp3", loop: true, fadeOutTrigger: "took his outstretched hand", snowflake: true, volume: 0.2 },
     "From outside came the": { id: "steam01", src: "sounds/steam01.m4a", volume: 1.0 },
     "and out the door": { id: "allAboard01", src: "sounds/allAboard01.m4a", volume: 1.0 },
     "to the North Pole": { id: "whyToTheNorthPole01", src: "sounds/whyToTheNorthPole01.m4a", volume: 1.0 },
-    "The train was filled": { id: "trainWithOtherChildren01", src: "sounds/trainWithOtherChildren01.m4a", bgColor: "#c47f11", snowflake: false, volume: 1.0 },
-    "Soon there were no": { id: "wolves01", src: "sounds/wolves01.m4a", volume: 1.0 },
+    "The train was filled": { id: "hotChocolate", src: "sounds/Hot Chocolate BGM.mp3", bgColor: "#c47f11", snowflake: false, fadeOutTrigger: "Soon there were no", volume: 0.2 },
+    "filled with other children": { id: "filledWithChildren01", src: "sounds/filledWithChildren01.m4a", volume: 0.6 },
+    "Soon there were no": { id: "clearedToGo", src: "sounds/Cleared To Go.mp3", loop: true, bgColor: "#000", fadeOutTrigger: "on a frozen sea", volume: 0.2 },
+    "lights to be seen": { id: "wolves01", src: "sounds/wolves01.m4a", volume: 1.0 },
     "from our train as": { id: "thunder01", src: "sounds/thunder01.wav", volume: 1.0 },
-    "Faster and faster we": { id: "theNorthPole", src: "sounds/TheNorthPole.mp3", loop: true, volume: 0.2 },
-    "pressed through the crowd": { id: "theNorthPole", src: "sounds/TheNorthPole.mp3", bgColor: "#5a6f7f", snowflake: true, volume: 0.2 },
+    "is the North Pole": { id: "theNorthPole", src: "sounds/TheNorthPole.mp3", loop: true, bgColor: "#5a6f7f", fadeOutTrigger: "choose one of you", volume: 0.2 },
+    "one of the children": { id: "lookTheElves01", src: "sounds/lookTheElves.m4a", volume: 0.5 },
+    "Polar Express could go": { id: "steam02", src: "sounds/steam02.wav", volume: 1.0 },
+    "pressed through the crowd": { id: "christmasEve", src: "sounds/Christmas Eve.mp3",snowflake: true, loop: true, fadeOutTrigger: "jumped into his sleigh" , volume: 0.2 },
+    "conductor handed me up": { id: "christmasEve", src: "sounds/Christmas Eve.mp3", loop: true, fadeOutTrigger: "" , volume: 0.2 },
 };
 
 // Because i want to flag the sounds to false until they're played
@@ -82,11 +87,15 @@ function fadeOutSound(soundElement) {
             clearInterval(fadeOutInterval);
             soundElement.pause();
             soundElement.currentTime = 0;
-            // soundElement.volume = audioConfig[soundElement.id].volume; // Reset volume
+            soundPlayed[soundElement.id] = false; // Reset the played flag
+            const currentlyPlayingIndex = currentlyPlaying.indexOf(soundElement.id);
+            if (currentlyPlayingIndex > -1) {
+                currentlyPlaying.splice(currentlyPlayingIndex, 1); // Remove from currently playing list
+            }
         } else {
             soundElement.volume = volume;
         }
-    }, 2000); // Fadeout time 2sec
+    }, 3000); // Fadeout time 2sec
 }
 
 function pauseAllSounds() {
