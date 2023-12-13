@@ -1,18 +1,24 @@
 const audioConfig = {
-    "Polar Express by Chris": { id: "researchingTheNorthPole", src: "sounds/Researching The North Pole.mp3", loop: true, fadeOutTrigger: "took his outstretched hand", snowflake: true, volume: 0.2 },
+    "Polar Express by Chris": { id: "seeingIsBelieving", src: "sounds/Seeing Is Believing02.mp3", loop: true, fadeOutTrigger: "knew he was wrong", snowflake: true, volume: 0.2 },
+    "Late that night I": { id: "aLongTimeAgo", src: "sounds/A Long Time Ago in a Tower Far Far Away.mp3", loop: true, fadeOutTrigger: "he pulled me aboard", volume: 0.2 },
     "From outside came the": { id: "steam01", src: "sounds/steam01.m4a", volume: 1.0 },
     "and out the door": { id: "allAboard01", src: "sounds/allAboard01.m4a", volume: 1.0 },
+    "ran up to him": { id: "wellYouComing01", src: "sounds/wellYouComing.m4a", volume: 1.0 },
     "to the North Pole": { id: "whyToTheNorthPole01", src: "sounds/whyToTheNorthPole01.m4a", volume: 1.0 },
-    "The train was filled": { id: "hotChocolate", src: "sounds/Hot Chocolate BGM.mp3", bgColor: "#c47f11", snowflake: false, fadeOutTrigger: "Soon there were no", volume: 0.2 },
+    "The train was filled": { id: "xmasStory", src: "sounds/Xmas Story.mp3", loop: true, bgColor: "#c47f11", snowflake: false, fadeOutTrigger: "Polar Express raced northward", volume: 0.1 },
     "filled with other children": { id: "filledWithChildren01", src: "sounds/filledWithChildren01.m4a", volume: 0.6 },
-    "Soon there were no": { id: "clearedToGo", src: "sounds/Cleared To Go.mp3", loop: true, bgColor: "#000", fadeOutTrigger: "on a frozen sea", volume: 0.2 },
+    "Soon there were no": { id: "clearedToGo", src: "sounds/Cleared To Go.mp3", loop: true, bgColor: "#000", fadeOutTrigger: "Polar Express never slowed", volume: 0.2 },
     "lights to be seen": { id: "wolves01", src: "sounds/wolves01.m4a", volume: 1.0 },
     "from our train as": { id: "thunder01", src: "sounds/thunder01.wav", volume: 1.0 },
-    "is the North Pole": { id: "theNorthPole", src: "sounds/TheNorthPole.mp3", loop: true, bgColor: "#5a6f7f", fadeOutTrigger: "choose one of you", volume: 0.2 },
+    "Faster and faster we": { id: "theNorthPole", src: "sounds/TheNorthPole.mp3", loop: true, fadeOutTrigger: "on a frozen sea", volume: 0.2 },
+    "on a frozen sea": { id: "thereIsTheNorthPole01", src: "sounds/thereIsTheNorthPole01.m4a", volume: 1.0 },
+    "is the North Pole": { id: "theJoyfulSeason", src: "sounds/The Joyful Season.mp3", loop: true, bgColor: "#5a6f7f", fadeOutTrigger: "choose one of you", volume: 0.2 },
+    "the conductor told us": { id: "theFirstGift01", src: "sounds/theFirstGift01.m4a", volume: 1.0 },
+    "he will choose one": { id: "heWillChooseOneOfYou01", src: "sounds/heWillChooseOneOfYou01.m4a", volume: 1.0 },
     "one of the children": { id: "lookTheElves01", src: "sounds/lookTheElves.m4a", volume: 0.5 },
-    "Polar Express could go": { id: "steam02", src: "sounds/steam02.wav", volume: 1.0 },
+    "Polar Express could go": { id: "steam01", src: "sounds/steam01.m4a", volume: 1.0 },
     "pressed through the crowd": { id: "christmasEve", src: "sounds/Christmas Eve.mp3",snowflake: true, loop: true, fadeOutTrigger: "jumped into his sleigh" , volume: 0.2 },
-    "conductor handed me up": { id: "christmasEve", src: "sounds/Christmas Eve.mp3", loop: true, fadeOutTrigger: "" , volume: 0.2 },
+    "conductor handed me up": { id: "christmasEve", src: "sounds/Christmas Eve.mp3", loop: true, volume: 0.2 },
 };
 
 // Because i want to flag the sounds to false until they're played
@@ -95,7 +101,7 @@ function fadeOutSound(soundElement) {
         } else {
             soundElement.volume = volume;
         }
-    }, 3000); // Fadeout time 2sec
+    }, 2500); // Fadeout time 3sec
 }
 
 function pauseAllSounds() {
