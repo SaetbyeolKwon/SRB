@@ -1,29 +1,29 @@
 const audioConfig = {
-    "Polar Express by Chris": { id: "seeingIsBelieving", src: "sounds/Seeing Is Believing02.mp3", loop: true, fadeOutTrigger: "knew he was wrong", snowflake: true, volume: 0.2 },
-    "Late that night I": { id: "aLongTimeAgo", src: "sounds/A Long Time Ago in a Tower Far Far Away.mp3", loop: true, fadeOutTrigger: "he pulled me aboard", volume: 0.2 },
-    "From outside came the": { id: "steam01", src: "sounds/steam01.m4a", volume: 1.0 },
-    "and out the door": { id: "allAboard01", src: "sounds/allAboard01.m4a", volume: 1.0 },
-    "ran up to him": { id: "wellYouComing01", src: "sounds/wellYouComing.m4a", volume: 1.0 },
-    "to the North Pole": { id: "whyToTheNorthPole01", src: "sounds/whyToTheNorthPole01.m4a", volume: 1.0 },
-    "The train was filled": { id: "xmasStory", src: "sounds/Xmas Story.mp3", loop: true, bgColor: "#c47f11", snowflake: false, fadeOutTrigger: "Polar Express raced northward", volume: 0.1 },
-    "filled with other children": { id: "filledWithChildren01", src: "sounds/filledWithChildren01.m4a", volume: 0.6 },
-    "Soon there were no": { id: "clearedToGo", src: "sounds/Cleared To Go.mp3", loop: true, bgColor: "#000", fadeOutTrigger: "Polar Express never slowed", volume: 0.2 },
-    "lights to be seen": { id: "wolves01", src: "sounds/wolves01.m4a", volume: 1.0 },
-    "from our train as": { id: "thunder01", src: "sounds/thunder01.wav", volume: 1.0 },
-    "Faster and faster we": { id: "theNorthPole", src: "sounds/TheNorthPole.mp3", loop: true, fadeOutTrigger: "on a frozen sea", volume: 0.2 },
-    "on a frozen sea": { id: "thereIsTheNorthPole01", src: "sounds/thereIsTheNorthPole01.m4a", volume: 1.0 },
-    "is the North Pole": { id: "theJoyfulSeason", src: "sounds/The Joyful Season.mp3", loop: true, bgColor: "#5a6f7f", fadeOutTrigger: "choose one of you", volume: 0.2 },
-    "the conductor told us": { id: "theFirstGift01", src: "sounds/theFirstGift01.m4a", volume: 1.0 },
-    "he will choose one": { id: "heWillChooseOneOfYou01", src: "sounds/heWillChooseOneOfYou01.m4a", volume: 1.0 },
-    "one of the children": { id: "lookTheElves01", src: "sounds/lookTheElves.m4a", volume: 0.5 },
-    "Polar Express could go": { id: "steam01", src: "sounds/steam01.m4a", volume: 1.0 },
-    "pressed through the crowd": { id: "christmasEve", src: "sounds/Christmas Eve.mp3",snowflake: true, loop: true, fadeOutTrigger: "jumped into his sleigh" , volume: 0.2 },
-    "conductor handed me up": { id: "christmasEve", src: "sounds/Christmas Eve.mp3", loop: true, volume: 0.2 },
+    "Polar Express by Chris": { type: 'bg', id: "seeingIsBelieving", src: "sounds/Seeing Is Believing02.mp3", loop: true, snowflake: true, volume: 0.2 },
+    "I did hear sounds": { type: 'bg', id: "aLongTimeAgo", src: "sounds/A Long Time Ago in a Tower Far Far Away.mp3", loop: true, volume: 0.2 },
+    "From outside came the": { id: "steam01", src: "sounds/steam01.m4a", type: 'se', volume: 1.0 },
+    "and out the door": { id: "allAboard01", src: "sounds/allAboard01.m4a", type: 'se', volume: 1.0 },
+    "ran up to him": { id: "wellYouComing01", src: "sounds/wellYouComing.m4a", type: 'se', volume: 1.0 },
+    "to the North Pole": { id: "whyToTheNorthPole01", src: "sounds/whyToTheNorthPole01.m4a", type: 'se', volume: 1.0 },
+    "The train was filled": { type: 'bg', id: "xmasStory", src: "sounds/Xmas Story.mp3",loop: true, bgColor: "#c47f11", snowflake: false, volume: 0.1 },
+    "filled with other children": { id: "filledWithChildren01", src: "sounds/filledWithChildren01.m4a", type: 'se', volume: 0.6 },
+    "Soon there were no": { id: "clearedToGo", src: "sounds/Cleared To Go.mp3", type: 'bg', loop: true, bgColor: "#000", volume: 0.2 },
+    "lights to be seen": { id: "wolves01", src: "sounds/wolves01.m4a", type: 'se', volume: 1.0 },
+    "from our train as": { id: "thunder01", src: "sounds/thunder01.wav", type: 'se', volume: 1.0 },
+    "Faster and faster we": { id: "theNorthPole", src: "sounds/TheNorthPole.mp3", type: 'bg', loop: true, volume: 0.2 },
+    "on a frozen sea": { id: "thereIsTheNorthPole01", src: "sounds/thereIsTheNorthPole01.m4a", type: 'se', volume: 1.0 },
+    "is the North Pole": { id: "theJoyfulSeason", src: "sounds/The Joyful Season.mp3", type: 'bg', loop: true, bgColor: "#5a6f7f", fadeOutTrigger: "choose one of you", volume: 0.2 },
+    "the conductor told us": { id: "theFirstGift01", src: "sounds/theFirstGift01.m4a", type: 'se', volume: 1.0 },
+    "He will choose one": { id: "heWillChooseOneOfYou01", src: "sounds/heWillChooseOneOfYou01.m4a", type: 'se', volume: 1.0 },
+    "one of the children": { id: "lookTheElves01", src: "sounds/lookTheElves.m4a", type: 'se', volume: 0.5 },
+    "Polar Express could go": { id: "steam01", src: "sounds/steam01.m4a", type: 'se', volume: 1.0 },
+    "pressed through the crowd": { id: "christmasEve", src: "sounds/Christmas Eve.mp3", snowflake: true, type: 'bg', loop: true, volume: 0.2 },
+    "conductor handed me up": { id: "christmasEve", src: "sounds/Christmas Eve.mp3", type: 'bg', loop: true, volume: 0.2 },
 };
 
 // Because i want to flag the sounds to false until they're played
 let soundPlayed = {};
-let currentlyPlaying = []; // list of currently playing sounds
+let currentlyPlaying = { music: null, effects: [] }; // list of currently playing sounds, object with music and effect
 let pausedSounds = [];
 
 document.addEventListener('DOMContentLoaded', setupAudioElements);
@@ -48,13 +48,26 @@ function playSound(text) {
 
         // Check to play sound
         if (text.includes(trigger) && soundElement) {
+            if (soundInfo.type === 'bg') {
+                // Fade out currently playing background music
+                if (currentlyPlaying.music && currentlyPlaying.music !== soundInfo.id) {
+                    const currentMusicElement = document.getElementById(currentlyPlaying.music);
+                    fadeOutSound(currentMusicElement);
+                }
+                currentlyPlaying.music = soundInfo.id;
+            } else if (soundInfo.type === 'se') {
+                // Add to currently playing effects
+                if (!currentlyPlaying.effects.includes(soundInfo.id)) {
+                    currentlyPlaying.effects.push(soundInfo.id);
+                }
+            }
+
             if (!soundPlayed[soundInfo.id]) {
                 console.log(`Playing sound: ${soundInfo.id}, volume: ${soundInfo.volume}`);
                 soundElement.currentTime = 0;
                 soundElement.play();
                 // Flagging the sound as played
                 soundPlayed[soundInfo.id] = true;
-                currentlyPlaying.push(soundInfo.id);
                 // Check bg color input and change
                 if (soundInfo.bgColor) {
                     changeBgColor(soundInfo.bgColor);
@@ -63,12 +76,6 @@ function playSound(text) {
                     controlSnowflake(soundInfo.snowflake);
                 }
             }
-        }
-
-        // Check for fade out trigger
-        if (soundInfo.fadeOutTrigger && text.includes(soundInfo.fadeOutTrigger) && soundElement) {
-            fadeOutSound(soundElement);
-            console.log("Fadeout trigger");
         }
     });
 }
@@ -86,6 +93,7 @@ function controlSnowflake(shouldAnimate) {
 }
 
 function fadeOutSound(soundElement) {
+    console.log("Fading out:", soundElement.id); 
     let volume = soundElement.volume;
     const fadeOutInterval = setInterval(() => {
         volume -= 0.1;
@@ -94,45 +102,74 @@ function fadeOutSound(soundElement) {
             soundElement.pause();
             soundElement.currentTime = 0;
             soundPlayed[soundElement.id] = false; // Reset the played flag
-            const currentlyPlayingIndex = currentlyPlaying.indexOf(soundElement.id);
-            if (currentlyPlayingIndex > -1) {
-                currentlyPlaying.splice(currentlyPlayingIndex, 1); // Remove from currently playing list
-            }
         } else {
             soundElement.volume = volume;
         }
-    }, 2500); // Fadeout time 3sec
+    }, 2000); // Fadeout time 3sec
 }
 
 function pauseAllSounds() {
-    pausedSounds = [];
-    currentlyPlaying.forEach(id => {
+    pausedSounds = { music: null, effects: [] };
+
+    const musicElement = currentlyPlaying.music ? document.getElementById(currentlyPlaying.music) : null;
+    if (musicElement && !musicElement.paused) {
+        musicElement.pause();
+        pausedSounds.music = currentlyPlaying.music;
+    }
+
+    // Pause sound effects
+    currentlyPlaying.effects.forEach(id => {
         const soundElement = document.getElementById(id);
         if (soundElement && !soundElement.paused) {
             soundElement.pause();
-            pausedSounds.push(id);
+            pausedSounds.effects.push(id);
         }
     });
 }
 
 function resumeAllSounds() {
-    pausedSounds.forEach(id => {
-        const soundElement = document.getElementById(id);
-        if (soundElement) {
-            soundElement.play();
+    // Resume music
+    if (pausedSounds.music) {
+        const musicElement = document.getElementById(pausedSounds.music);
+        if (musicElement) {
+            musicElement.play();
         }
-    });
-    pausedSounds = [];
+    }
+
+    // Resume sound effects
+    if (pausedSounds.effects && Array.isArray(pausedSounds.effects)) {
+        pausedSounds.effects.forEach(id => {
+            const soundElement = document.getElementById(id);
+            if (soundElement) {
+                soundElement.play();
+            }
+        });
+    }
+
+    pausedSounds = { music: null, effects: [] };
 }
 
 function stopAllSounds() {
-    currentlyPlaying.forEach(id => {
-        const soundElement = document.getElementById(id);
-        if (soundElement) {
-            soundElement.pause();
-            soundElement.currentTime = 0;
-            soundPlayed[id] = false;
+     // Stopping music
+    if (currentlyPlaying.music) {
+        const musicElement = document.getElementById(currentlyPlaying.music);
+        if (musicElement) {
+            musicElement.pause();
+            musicElement.currentTime = 0;
+            soundPlayed[currentlyPlaying.music] = false;
         }
-    });
-    currentlyPlaying = []; // To clear the current playing list
+    }
+ 
+     // Stopping sound effects
+     currentlyPlaying.effects.forEach(id => {
+         const soundElement = document.getElementById(id);
+         if (soundElement) {
+             soundElement.pause();
+             soundElement.currentTime = 0;
+             soundPlayed[id] = false;
+         }
+     });
+ 
+     // Resetting currentlyPlaying
+     currentlyPlaying = { music: null, effects: [] };
 }

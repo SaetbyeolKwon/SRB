@@ -63,23 +63,23 @@ recognition.addEventListener('result', e => {
     // }, 10000); // 10 seconds
 });
 
-function automaticPause() {
-    if (listening) {
-        currentlyPlaying.forEach(id => {
-            const soundElement = document.getElementById(id);
-            if (soundElement && !soundElement.paused) {
-                fadeOutSound(soundElement);
-            }
-        });
+// function automaticPause() {
+//     if (listening) {
+//         currentlyPlaying.forEach(id => {
+//             const soundElement = document.getElementById(id);
+//             if (soundElement && !soundElement.paused) {
+//                 fadeOutSound(soundElement);
+//             }
+//         });
         
-        listening = false;
-        recognition.stop();
-        startBtn.textContent = 'Start Reading';
-        pauseBtn.textContent = 'Resume';
-        isPaused = true;
-        console.log = "automatic paused";
-    }
-}
+//         listening = false;
+//         recognition.stop();
+//         startBtn.textContent = 'Start Reading';
+//         pauseBtn.textContent = 'Resume';
+//         isPaused = true;
+//         console.log = "automatic paused";
+//     }
+// }
 
 const startBtn = document.getElementById('start-btn');
 const pauseBtn = document.getElementById('pause-btn');
