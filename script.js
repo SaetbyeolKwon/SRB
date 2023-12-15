@@ -33,7 +33,7 @@ function updateReadingPosition(spokenText) {
     let position = sanitizeText(displayText).indexOf(sequence);
 
     if (position >= 0) {
-        document.querySelectorAll('.highlighted').forEach(el => el.classList.remove('highlighted'));
+        // document.querySelectorAll('.highlighted').forEach(el => el.classList.remove('highlighted'));
 
         let regex = new RegExp(sequence, 'i');
         let match = displayText.match(regex);
@@ -50,40 +50,14 @@ function updateReadingPosition(spokenText) {
     }
 }
 
-let autoPauseTimer;
-
 recognition.addEventListener('result', e => {
     const spokenText = Array.from(e.results).map(result => result[0]).map(result => result.transcript).join('');
     updateReadingPosition(spokenText);
-
-    // Reset the timer on new voice input
-    clearTimeout(autoPauseTimer);
-    // autoPauseTimer = setTimeout(() => {
-    //     automaticPause();
-    // }, 10000); // 10 seconds
 });
 
-// function automaticPause() {
-//     if (listening) {
-//         currentlyPlaying.forEach(id => {
-//             const soundElement = document.getElementById(id);
-//             if (soundElement && !soundElement.paused) {
-//                 fadeOutSound(soundElement);
-//             }
-//         });
-        
-//         listening = false;
-//         recognition.stop();
-//         startBtn.textContent = 'Start Reading';
-//         pauseBtn.textContent = 'Resume';
-//         isPaused = true;
-//         console.log = "automatic paused";
-//     }
-// }
 
 const startBtn = document.getElementById('start-btn');
 const pauseBtn = document.getElementById('pause-btn');
-let isPaused = false;
 
 startBtn.addEventListener('click', toggleReading);
 pauseBtn.addEventListener('click', togglePause);
