@@ -8,6 +8,8 @@ recognition.lang = 'en-US';
 let listening = false;
 let displayText = ''; // Original text
 
+console.log("Script loaded. SpeechRecognition available:", !!window.SpeechRecognition);
+
 document.addEventListener('DOMContentLoaded', loadTextFile);
 
 // Original code
@@ -54,6 +56,7 @@ function updateReadingPosition(spokenText) {
 
 recognition.addEventListener('result', e => {
     const spokenText = Array.from(e.results).map(result => result[0]).map(result => result.transcript).join('');
+    console.log("Recognition result:", spokenText);
     updateReadingPosition(spokenText);
 
     // Reset the timer on new voice input
@@ -81,6 +84,25 @@ recognition.addEventListener('result', e => {
 //     }
 // }
 
+// When speech recognition ended unexpectedly.
+let recognitionEnd = true;
+
+recognition.addEventListener('end', () => {
+    console.log("Speech recognition service ended.");
+    if (listening && recognitionEnd) {
+        console.log("Speech recognition service ended unexpectedly, restarting...");
+        recognition.start();
+    }
+});
+
+recognition.addEventListener('start', () => {
+    console.log("Speech recognition started.");
+});
+
+recognition.addEventListener('stop', () => {
+    console.log("Speech recognition stopped.");
+});
+
 const startBtn = document.getElementById('start-btn');
 const pauseBtn = document.getElementById('pause-btn');
 let isPaused = false;
@@ -90,11 +112,14 @@ pauseBtn.addEventListener('click', togglePause);
 
 function toggleReading() {
     listening = !listening;
+    console.log("Toggle reading:", listening);
     if (listening) {
+        recognitionEnd = true;
         recognition.start();
         startBtn.textContent = 'Stop Reading';
         resumeAllSounds();
     } else {
+        recognitionEnd = false;
         recognition.stop();
         startBtn.textContent = 'Start Reading';
         stopAllSounds();
@@ -111,4 +136,6 @@ function togglePause() {
         pauseBtn.textContent = 'Pause';
     }
     isPaused = !isPaused;
+    console.log("Toggle pause:", isPaused);
+    recognitionEnd = false;
 }

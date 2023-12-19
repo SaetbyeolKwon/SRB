@@ -5,7 +5,7 @@ const audioConfig = {
     "and out the door": { id: "allAboard01", src: "sounds/allAboard01.m4a", type: 'se', volume: 1.0 },
     "ran up to him": { id: "wellYouComing01", src: "sounds/wellYouComing.m4a", type: 'se', volume: 1.0 },
     "North Pole of course": { id: "whyToTheNorthPole01", src: "sounds/whyToTheNorthPole01.m4a", type: 'se', volume: 1.0 },
-    "train was filled": { type: 'bg', id: "xmasStory", src: "sounds/Xmas Story.mp3",loop: true, bgColor: "#c47f11", snowflake: false, volume: 0.1 },
+    "train was filled": { type: 'bg', id: "xmasStory", src: "sounds/Xmas Story.mp3",loop: true, bgColor: "#ae710f", snowflake: false, volume: 0.1 },
     "with other children": { id: "filledWithChildren01", src: "sounds/filledWithChildren01.m4a", type: 'se', volume: 0.6 },
     "there were no": { id: "clearedToGo", src: "sounds/Cleared To Go.mp3", type: 'bg', loop: true, bgColor: "#000", volume: 0.2 },
     "lights to be": { id: "wolves01", src: "sounds/wolves01.m4a", type: 'se', volume: 1.0 },
@@ -23,11 +23,11 @@ const audioConfig = {
     "would you like": { id: "whatWouldYouLike01", src: "sounds/whatWouldYouLike01.m4a", type: 'se', volume: 1.0 },
     "holding the bell": { id: "theFirstGift02", src: "sounds/theFirstGift02.m4a", type: 'se', volume: 1.0 },
     "handed the bell": { id: "bell01", src: "sounds/bell01.wav", type: 'se', volume: 1.0 },
-    "As soon as": { id: "lessonsGoodbyes", src: "sounds/Lessons Goodbyes.mp3", type: 'bg', loop: true, volume: 0.4 },
+    "As soon as": { id: "lessonsGoodbyes", src: "sounds/Lessons Goodbyes.mp3", type: 'bg', loop: true, bgColor: "#c47f11", snowflake: false, volume: 0.4 },
     "gave a sudden": { id: "steam02", src: "sounds/steam02.wav", type: 'se', volume: 1.0 },
     "from the moving": { id: "theFirstGiftOfChristmas", src: "sounds/The First Gift Of Christmas.mp3", type: 'bg', loop: true, volume: 0.2 },
     "around his mouth": { id: "merryChristmas01", src: "sounds/merryChristmas01.m4a", type: 'se', volume: 1.0 },
-    "On Christmas morning": { id: "christmasMorningOneLastGift", src: "sounds/Christmas Morning One Last Gift.mp3", type: 'bg', loop: true, volume: 0.3 },
+    "On Christmas morning": { id: "christmasMorningOneLastGift", src: "sounds/Christmas Morning One Last Gift.mp3", type: 'bg', bgColor: "#5a6f7f", loop: true, volume: 0.3 },
     "shook the bell": { id: "bell02", src: "sounds/bell02.wav", type: 'se', volume: 1.0 },
 };
 
