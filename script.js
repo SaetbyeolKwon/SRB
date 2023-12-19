@@ -50,14 +50,14 @@ function updateReadingPosition(spokenText) {
     }
 }
 
-let autoPauseTimer;
+// let autoPauseTimer;
 
 recognition.addEventListener('result', e => {
     const spokenText = Array.from(e.results).map(result => result[0]).map(result => result.transcript).join('');
     updateReadingPosition(spokenText);
 
     // Reset the timer on new voice input
-    clearTimeout(autoPauseTimer);
+    // clearTimeout(autoPauseTimer);
     // autoPauseTimer = setTimeout(() => {
     //     automaticPause();
     // }, 10000); // 10 seconds
