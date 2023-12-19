@@ -55,9 +55,19 @@ function updateReadingPosition(spokenText) {
 // let autoPauseTimer;
 
 recognition.addEventListener('result', e => {
+    const results = Array.from(e.results);
+    const isFinal = results[results.length - 1].isFinal;
     const spokenText = Array.from(e.results).map(result => result[0]).map(result => result.transcript).join('');
+
     console.log("Recognition result:", spokenText);
-    updateReadingPosition(spokenText);
+    console.log(`Is final result: ${isFinal}`);
+    
+    if (isFinal) {
+        console.log("Final result:", spokenText);
+        updateReadingPosition(spokenText);
+    } else {
+        console.log("Interim result:", spokenText);
+    }
 
     // Reset the timer on new voice input
     // clearTimeout(autoPauseTimer);
