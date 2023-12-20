@@ -2,7 +2,7 @@ body,html {
     font-family: Arial, sans-serif;
     background-color: #5a6f7f;
     /* background: radial-gradient(circle, rgba(90,111,127,1) 50%, rgba(57,99,131,1) 100%); */
-    transition: background-color 2s;
+    transition: background-color 1s;
     color: #ffffff;
     line-height: 1.6;
     margin: 0;
